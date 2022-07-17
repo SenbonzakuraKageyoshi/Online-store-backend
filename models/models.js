@@ -14,6 +14,7 @@ const Product = sequelize.define('product', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false},
     name: {type: DataTypes.STRING, allowNull: false},
     price: {type: DataTypes.INTEGER, allowNull: false},
+    imgUrl: {type: DataTypes.STRING, allowNull: true},
 });
 
 const Type = sequelize.define('type', {
@@ -52,6 +53,9 @@ Product.belongsToMany(Brand, {through: ProductBrand});
 Brand.belongsToMany(Product, {through: ProductBrand});
 
 ProductBrand.belongsTo(Product, {foreignKey: 'productId'});
+
+Product.belongsTo(Type, {foreignKey: 'typeId'});
+Product.belongsTo(Brand, {foreignKey: 'brandId'});
 
 export {
     User, Product, Type, Brand, SelectedProduct, ProductType, ProductBrand

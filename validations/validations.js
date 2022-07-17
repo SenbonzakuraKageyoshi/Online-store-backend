@@ -16,3 +16,12 @@ export const registerValidation = [
 export const typeValidation = [
     body('name', 'Введите название категории (не менее 2 символов)').isLength({ min: 2 }),
 ];
+
+export const brandValidation = [
+    body('name', 'Введите название бренда (не менее 2 символов)').isLength({ min: 2 }),
+];
+
+export const productValidation = [
+    body('name', 'Введите название продукта (не менее 2 символов)').isLength({ min: 2 }),
+    body('price', 'Введите цену продукта').isLength(),
+];
