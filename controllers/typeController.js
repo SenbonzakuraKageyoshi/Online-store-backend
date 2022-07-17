@@ -1,4 +1,4 @@
-import { Type } from "../models/models.js";
+import { Type, Product, Brand } from "../models/models.js";
 
 const createType = async (req, res) => {
     try {
@@ -25,6 +25,19 @@ const getTypes = async (req, res) => {
     }
 };
 
+const getType = async (req, res) => {
+    try {
+        const { id } = req.params
+
+        const type = await Type.findOne({where: {id}, include: [{model: Product, include: [Brand]}]})
+
+
+        res.status(200).json(type);
+    } catch (error) {
+        res.status(500).json({message: 'Ошибка получения типа'})
+    }
+};
+
 export {
-    createType, getTypes
+    createType, getTypes, getType
 }
